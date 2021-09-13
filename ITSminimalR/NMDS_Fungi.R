@@ -4,8 +4,8 @@ library(ggtext)
 
 source("16S_adonis.R")
 
-nmds <- read_tsv(file="raw_data_new/ITS_Fungi_only.agc.unique_list.0.05.filter.0.05.subsample.braycurtis.0.05.square.nmds.axes")
-metadata <- read_excel(path="raw_data_new/metadata.xlsx")
+nmds <- read_tsv(file="raw_data_fungi/ITS_Fungi_only.agc.unique_list.0.05.filter.0.05.subsample.braycurtis.0.05.square.nmds.axes")
+metadata <- read_excel(path="raw_data_fungi/metadata.xlsx")
 metadata_nmds <- inner_join(metadata, nmds, by=c('sample'='group')) %>%
   mutate(month = factor(month,
                         levels=c("Jan",
@@ -25,9 +25,6 @@ ggplot(metadata_nmds,
        aes(x=axis1, y=axis2, color=month, fill=month)) +
   stat_ellipse(geom="polygon",type="norm", level=0.75, alpha=0.2, show.legend=F) +
   geom_point(show.legend=TRUE) +
-  # geom_richtext(data=my_legend,
-  #           aes(x=x, y=y, label=label, color=color),
-  #           inherit.aes=FALSE, show.legend = FALSE, hjust=0, fill=NA, label.color=NA) +
   coord_cartesian(xlim=c(-0.8, 0.8), ylim=c(-0.8, 0.8)) +
   labs(title=NULL,
        caption=NULL) +

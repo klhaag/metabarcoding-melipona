@@ -25,9 +25,6 @@ ggplot(metadata_nmds,
        aes(x=axis1, y=axis2, color=month, fill=month)) +
   stat_ellipse(geom="polygon",type="norm", level=0.75, alpha=0.2, show.legend=F) +
   geom_point(show.legend=TRUE) +
-  # geom_richtext(data=my_legend,
-  #           aes(x=x, y=y, label=label, color=color),
-  #           inherit.aes=FALSE, show.legend = FALSE, hjust=0, fill=NA, label.color=NA) +
   coord_cartesian(xlim=c(-0.8, 0.8), ylim=c(-0.8, 0.8)) +
   labs(title=NULL,
        caption=NULL) +
