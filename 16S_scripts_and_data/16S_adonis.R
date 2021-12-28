@@ -1,3 +1,5 @@
+#This script contains the PERMANOVA analysis on bacterial community composition
+
 library(tidyverse)
 library(readxl)
 library(vegan)
@@ -5,9 +7,9 @@ library(vegan)
 set.seed(19962606)
 permutations <- 10000
 
-metadata <- read_excel(path="raw_data_plants/metadata.xlsx")
+metadata <- read_excel(path="raw_data/metadata.xlsx")
 
-distance <- read_tsv("raw_data_plants/ITS_plants_only.agc.unique_list.0.05.filter.0.05.subsample.braycurtis.0.05.square.dist", 
+distance <- read_tsv("raw_data/melipona16s.subsample.braycurtis.dist", 
                      skip=1, col_names=FALSE)
 
 colnames(distance) <- c("sample", distance$X1)
@@ -18,19 +20,19 @@ all_dist <- meta_distance %>%
   select(all_of(.[["sample"]])) %>%
   as.dist()
 
-adonis(all_dist~location, 
-       data=meta_distance, 
-       permutations = permutations)
-
-adonis(all_dist~location*disease, 
-       data=meta_distance, 
-       permutations = permutations)
-
 adonis(all_dist~month, 
        data=meta_distance, 
        permutations = permutations)
 
-adonis(all_dist~month*disease, 
+adonis(all_dist~location, 
+       data=meta_distance, 
+       permutations = permutations)
+
+adonis(all_dist~month*location, 
+       data=meta_distance, 
+       permutations = permutations)
+
+adonis(all_dist~disease, 
        data=meta_distance, 
        permutations = permutations)
 
@@ -38,7 +40,7 @@ adonis(all_dist~month*disease,
        data=meta_distance, 
        permutations = permutations)
 
-adonis(all_dist~sister, 
+adonis(all_dist~location*disease, 
        data=meta_distance, 
        permutations = permutations)
 
@@ -53,8 +55,8 @@ Jan_Feb_dist <- Jan_Feb %>%
   as.dist()
 
 Jan_Feb_test <- adonis(Jan_Feb_dist~month,
-                       data=Jan_Feb,
-                       permutations=permutations)
+                             data=Jan_Feb,
+                             permutations=permutations)
 
 pairwise_p["Jan_Feb"] <- Jan_Feb_test[["aov.tab"]][["Pr(>F)"]][1]
 

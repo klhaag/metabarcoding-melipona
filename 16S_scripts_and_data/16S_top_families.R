@@ -96,11 +96,11 @@ agg_family_metadata %>%
   scale_color_manual(name=NULL,
                      values=c("darkred", "darkblue"),
                      breaks=c("BP", "PA"),
-                     labels=c("BQL", "POA")) +
+                     labels=c("BP", "POA")) +
   scale_fill_manual(name=NULL,
                      values=c("darkred", "darkblue"),
                      breaks=c("BP", "PA"),
-                     labels=c("BQL", "POA")) +
+                     labels=c("BP", "POA")) +
   labs(x=NULL,
        y="Relative abundance %") +
   scale_y_log10(breaks=c(1e-4, 1e-3, 1e-2, 1e-1, 1), labels=c(1e-2, 1e-1, 1, 10, 100)) +
@@ -110,6 +110,10 @@ agg_family_metadata %>%
 
 #statistics
 
+# this tests the significance of the differences in relative abundances of
+# bacterial top families between colonies with different health status,
+# correcting for multiple comparisons
+
 family_tests1 <- agg_family_metadata %>%
   nest(sample_data = c(-family)) %>%
   mutate(test=map(sample_data, ~tidy(kruskal.test(agg_rel_abund~disease, data=.)))) %>%
@@ -117,12 +121,18 @@ family_tests1 <- agg_family_metadata %>%
   mutate(p.value.adj=p.adjust(p.value, method="BH")) %>%
   arrange(p.value.adj)
 
+# this tests the significance of the differences in relative abundances of
+# bacterial top families between months, correcting for multiple comparisons
+
 family_tests2 <- agg_family_metadata %>%
   nest(sample_data = c(-family)) %>%
   mutate(test=map(sample_data, ~tidy(kruskal.test(agg_rel_abund~month, data=.)))) %>%
   unnest(test) %>%
   mutate(p.value.adj=p.adjust(p.value, method="BH")) %>%
   arrange(p.value.adj)
+
+# this tests the significance of the differences in relative abundances of
+# bacterial top families between different locations, correcting for multiple comparisons
 
 family_tests3 <- agg_family_metadata %>%
   nest(sample_data = c(-family)) %>%

@@ -3,24 +3,24 @@ library(readxl)
 library(broom)
 library(purrr)
 
-metadata <- read_excel(path="raw_data_fungi/metadata.xlsx", range = cell_cols(1:8),
-                         col_types=c(location = "text", colony = "text", sister = "text", disease = "logical", 
-                                     forager = "text", month = "text", weight = "numeric", sample = "text"))
+metadata <- read_excel(path="raw_data_plants/metadata.xlsx", range = cell_cols(1:8),
+                       col_types=c(location = "text", colony = "text", sister = "text", disease = "logical", 
+                                   forager = "text", month = "text", weight = "numeric", sample = "text"))
 
 metadata <- mutate(metadata, month = factor(month, levels=c("Apr", "Mar", "Feb", "Jan")))
 
-taxonomy <- read_tsv(file="raw_data_fungi/ITS_Fungi_only_agc.taxonomy") %>%
+taxonomy <- read_tsv(file="raw_data_plants/ITS_plants_only_agc.taxonomy") %>%
   rename_all(tolower) %>%
   mutate(taxonomy=str_replace_all(string=taxonomy, pattern="\\(\\d*\\)", replacement="")) %>%
   mutate(taxonomy=str_replace_all(string=taxonomy, pattern=";$", replacement="")) %>%
   separate(taxonomy, into=c("kingdom", "phylum", "class", "order", "family", "genus"), sep=";")
 
-otu_data <- read_tsv("raw_data_fungi/ITS_Fungi_only_agc_subsample.shared", 
+otu_data <- read_tsv("raw_data_plants/ITS_plants_only_agc_subsample.shared", 
                      col_types=cols(Group=col_character(),
                                     .default = col_double())) %>%
   select(Group, starts_with("Otu")) %>%
   pivot_longer(cols=-Group, names_to="otu", values_to="count") %>%
-  mutate(rel_abund=count/1000)
+  mutate(rel_abund=count/800)
 
 otu_data %>%
   group_by(Group) %>%
@@ -37,7 +37,7 @@ agg_genus_metadata %>%
   group_by(genus) %>%
   summarize(median=median(agg_rel_abund)) %>%
   arrange((desc(median)))
-  
+
 top_taxa <- agg_genus_metadata %>%
   group_by(genus) %>%
   summarize(median=median(agg_rel_abund)) %>%
@@ -56,9 +56,9 @@ agg_genus_metadata %>%
                      breaks=c("TRUE", "FALSE"),
                      labels=c("Diseased", "Healthy")) +
   scale_fill_manual(name=NULL,
-                     values=c("darkred", "darkblue"),
-                     breaks=c("TRUE", "FALSE"),
-                     labels=c("Diseased", "Healthy")) +
+                    values=c("darkred", "darkblue"),
+                    breaks=c("TRUE", "FALSE"),
+                    labels=c("Diseased", "Healthy")) +
   labs(x=NULL,
        y="Relative abundance %") +
   scale_y_log10(breaks=c(1e-4, 1e-3, 1e-2, 1e-1, 1), labels=c(1e-2, 1e-1, 1, 10, 100)) +
@@ -96,19 +96,23 @@ agg_genus_metadata %>%
   scale_color_manual(name=NULL,
                      values=c("darkred", "darkblue"),
                      breaks=c("BP", "PA"),
-                     labels=c("BQL", "POA")) +
+                     labels=c("BP", "POA")) +
   scale_fill_manual(name=NULL,
                      values=c("darkred", "darkblue"),
                      breaks=c("BP", "PA"),
-                     labels=c("BQL", "POA")) +
+                     labels=c("BP", "POA")) +
   labs(x=NULL,
        y="Relative abundance %") +
   scale_y_log10(breaks=c(1e-4, 1e-3, 1e-2, 1e-1, 1), labels=c(1e-2, 1e-1, 1, 10, 100)) +
   coord_flip() +
   theme_classic() +
   theme()
-  
+
 #statistics
+
+# this tests the significance of the differences in relative abundances of
+# pollen from distinct plant genera between colonies with different health status,
+# correcting for multiple comparisons
 
 genus_tests1 <- agg_genus_metadata %>%
   nest(sample_data = c(-genus)) %>%
@@ -117,12 +121,19 @@ genus_tests1 <- agg_genus_metadata %>%
   mutate(p.value.adj=p.adjust(p.value, method="BH")) %>%
   arrange(p.value.adj)
 
+# this tests the significance of the differences in relative abundances of
+# pollen from distinct plant genera between months, correcting for multiple comparisons
+
 genus_tests2 <- agg_genus_metadata %>%
   nest(sample_data = c(-genus)) %>%
   mutate(test=map(sample_data, ~tidy(kruskal.test(agg_rel_abund~month, data=.)))) %>%
   unnest(test) %>%
   mutate(p.value.adj=p.adjust(p.value, method="BH")) %>%
   arrange(p.value.adj)
+
+# this tests the significance of the differences in relative abundances of
+# pollen from distinct plant genera between different locations, 
+# correcting for multiple comparisons
 
 genus_tests3 <- agg_genus_metadata %>%
   nest(sample_data = c(-genus)) %>%

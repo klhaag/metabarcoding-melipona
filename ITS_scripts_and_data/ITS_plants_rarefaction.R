@@ -1,13 +1,13 @@
 library(tidyverse)
 library(readxl)
 
-rarefy <- read_tsv(file="raw_data_fungi/ITS_Fungi_only.agc.unique_list.groups.rarefaction") %>%
+rarefy <- read_tsv(file="raw_data_plants/ITS_plants.rarefaction") %>%
   select(-contains("lci-"), -contains("hci-")) %>%
   pivot_longer(cols=c(-numsampled), names_to='sample', values_to='sobs') %>%
   mutate(sample=str_replace_all(sample, pattern="0.05-", replacement="")) %>%
   drop_na() 
 
-metadata <- read_excel(path="raw_data_fungi/metadata.xlsx", col_names=TRUE)
+metadata <- read_excel(path="raw_data_plants/metadata.xlsx", col_names=TRUE)
 
 metadata_rarefy <- inner_join(metadata, rarefy, c("sample"))
 

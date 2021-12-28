@@ -13,7 +13,7 @@ corrdata <- read_excel(path="raw_data/combined_bacteria_plants.xlsx",
 corrresults <- cor(corrdata[,unlist(lapply(corrdata, is.numeric))], method = "spearman", use = "pairwise.complete.obs")
 test <- corr.test(corrdata[2:28], method = "spearman")
 corrplot(corrresults, type="upper")
-
+p_values <- test[["p"]]
 
 
 

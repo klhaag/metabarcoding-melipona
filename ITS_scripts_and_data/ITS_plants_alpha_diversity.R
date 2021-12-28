@@ -1,3 +1,6 @@
+#This script contains the analysis of pollen alpha diversity and forager weight per month, location and health status
+#Diseased colonies are those that manifested any symptom of disease during the course of our study
+
 library(tidyverse)
 library(broom)
 library(readxl)
@@ -27,9 +30,9 @@ ggplot(meta_alpha, aes(x=month, y=shannon, color=colony)) +
                      labels=c("BP1", "BP4", "BP5", "PA1", "PA4", "PA5")) +
   scale_x_discrete(limits=c("Jan", "Feb", "Mar", "Apr"),
                    labels=c("JAN", "FEB", "MAR", "APR")) +
-  labs(title="Shannon diversity in different samples",
+  labs(title="Pollen SDI in all samples",
        x=NULL,
-       y="Shannon Index") +
+       y="Shannon Diversity Index") +
   theme_classic()
 
 #plotting shannon x month x disease
@@ -42,9 +45,9 @@ ggplot(meta_alpha, aes(x=month, y=shannon, color=disease)) +
                      labels=c("Healty", "Diseased")) +
   scale_x_discrete(limits=c("Jan", "Feb", "Mar", "Apr"),
                    labels=c("JAN", "FEB", "MAR", "APR")) +
-  labs(title="Shannon diversity in relation to disease",
+  labs(title="Pollen SDI in relation to disease",
        x=NULL,
-       y="Shannon Index") +
+       y="Shannon Diversity Index") +
   theme_classic()
 
 #box plot of shannon x health status
@@ -58,9 +61,9 @@ ggplot(meta_alpha, aes(x=disease, y=shannon, color=disease)) +
                      labels=c("Healthy", "Diseased")) +
   scale_x_discrete(limits=c("FALSE", "TRUE"),
                    labels=c("Healthy", "Diseased")) +
-  labs(title="Relationship between Shannon Index and disease",
+  labs(title="Relationship between pollen SDI and disease",
        x=NULL,
-       y="Shannon Index") +
+       y="Shannon Diversity Index") +
   theme_classic()
 
 #box plot of eveness x health status
@@ -74,7 +77,7 @@ ggplot(meta_alpha, aes(x=disease, y=shannoneven, color=disease)) +
                      labels=c("Healthy", "Diseased")) +
   scale_x_discrete(limits=c("FALSE", "TRUE"),
                    labels=c("Healthy", "Diseased")) +
-  labs(title="Relationship between eveness and disease",
+  labs(title="Relationship between pollen eveness and disease",
        x=NULL,
        y="Eveness") +
   theme_classic()
@@ -90,7 +93,7 @@ ggplot(meta_alpha, aes(x=month, y=shannoneven, color=month)) +
                      labels=c("JAN", "FEB", "MAR", "APR")) +
   scale_x_discrete(limits=c("Jan", "Feb", "Mar", "Apr"),
                    labels=c("JAN", "FEB", "MAR", "APR")) +
-  labs(title="Relationship between eveness and month",
+  labs(title="Temporal changes in pollen eveness",
        x=NULL,
        y="Eveness") +
   theme_classic()
@@ -106,9 +109,9 @@ ggplot(meta_alpha, aes(x=month, y=shannon, color=month)) +
                      labels=c("JAN", "FEB", "MAR", "APR")) +
   scale_x_discrete(limits=c("Jan", "Feb", "Mar", "Apr"),
                    labels=c("JAN", "FEB", "MAR", "APR")) +
-  labs(title=NULL,
+  labs(title="Temporal changes in pollen SDI",
        x=NULL,
-       y="Shannon Index") +
+       y="Shannon Diversity Index") +
   theme_classic()
 
 #box plot of weight x time
@@ -122,7 +125,7 @@ ggplot(meta_alpha, aes(x=month, y=weight, color=month)) +
                      labels=c("JAN", "FEB", "MAR", "APR")) +
   scale_x_discrete(limits=c("Jan", "Feb", "Mar", "Apr"),
                    labels=c("JAN", "FEB", "MAR", "APR")) +
-  labs(title=NULL,
+  labs(title="Temporal changes in forager weight",
        x=NULL,
        y="Forager Weight (g)") +
   theme_classic()
@@ -140,7 +143,7 @@ ggplot(meta_alpha, aes(x=location, y=weight, color=location)) +
                    labels=c("BP", "PA")) +
   labs(title="Relationship between forager weight and location",
        x=NULL,
-       y="forager weight (g)") +
+       y="Forager Weight (g)") +
   theme_classic()
 
 ggplot(meta_alpha, aes(x=disease, y=weight, color=disease)) +
@@ -152,9 +155,9 @@ ggplot(meta_alpha, aes(x=disease, y=weight, color=disease)) +
                      labels=c("Healthy", "Diseased")) +
   scale_x_discrete(limits=c("FALSE", "TRUE"),
                    labels=c("Healthy", "Diseased")) +
-  labs(title="Relationship between weight and disease",
+  labs(title="Relationship between forager weight and disease",
        x=NULL,
-       y="Eveness") +
+       y="Forager Weight (g)") +
   theme_classic()
 
 # statistics
@@ -199,7 +202,7 @@ ggplot(meta_alpha, aes(x=weight, y=shannon, color=month)) +
                      values=c("darkblue", "darkred", "darkgreen", "orange"),
                      breaks=c("Jan", "Feb", "Mar", "Apr"),
                      labels=c("JAN", "FEB", "MAR", "APR")) +
-  labs(title=NULL,
+  labs(title="Correlation between pollen SDI and forager weight",
        x="Bee Weight (g)",
        y="Shannon Diversity Index") +
   theme_classic()

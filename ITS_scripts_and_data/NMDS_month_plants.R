@@ -1,3 +1,6 @@
+# This script runs the plot of NMDS on Bray-Curtis distances of pollen 
+# composition across months
+
 library(tidyverse)
 library(readxl)
 library(ggtext)
@@ -25,7 +28,7 @@ ggplot(metadata_nmds,
        aes(x=axis1, y=axis2, color=month, fill=month)) +
   stat_ellipse(geom="polygon",type="norm", level=0.75, alpha=0.2, show.legend=F) +
   geom_point(show.legend=TRUE) +
-  coord_cartesian(xlim=c(-0.8, 0.8), ylim=c(-0.8, 0.8)) +
+  coord_cartesian(xlim=c(-0.9, 0.9), ylim=c(-0.9, 0.9)) +
   labs(title=NULL,
        caption=NULL) +
   scale_color_manual(name=NULL,

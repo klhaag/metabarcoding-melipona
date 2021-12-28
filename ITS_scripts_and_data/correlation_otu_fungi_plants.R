@@ -13,3 +13,4 @@ corrdata <- read_excel(path="raw_data_fungi/combined_fungi_plants.xlsx",
 corrresults <- cor(corrdata[,unlist(lapply(corrdata, is.numeric))], method = "spearman", use = "pairwise.complete.obs")
 test <- corr.test(corrdata[2:26], method = "spearman")
 corrplot(corrresults, type="upper")
+p_values <- test[["p"]]
