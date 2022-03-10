@@ -20,6 +20,14 @@ all_dist <- meta_distance %>%
   select(all_of(.[["sample"]])) %>%
   as.dist()
 
+adonis(all_dist~colony, 
+       data=meta_distance, 
+       permutations = permutations)
+
+adonis(all_dist~sister, 
+       data=meta_distance, 
+       permutations = permutations)
+
 adonis(all_dist~month, 
        data=meta_distance, 
        permutations = permutations)
