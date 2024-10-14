@@ -1,0 +1,481 @@
+#DEMULTIPLEXING
+
+make.contigs(ffastq=ITS-B_S4_L001_R1_001.fastq, rfastq=ITS-B_S4_L001_R2_001.fastq, oligos=ITSB_supplement.oligos, pdiffs=2, processors=24)
+
+Group count: 
+A_AL_1_2	54519
+A_AL_1_3	43986
+A_AL_2_2	92334
+A_AL_2_3	51260
+A_AL_2_4	41196
+A_AL_3_1	61589
+A_AL_3_2	33160
+A_AL_3_3	42270
+A_CT_7_1	33001
+A_CT_7_2	59950
+A_CT_8_1	41144
+A_CT_8_2	96331
+A_CT_8_3	184199
+A_CT_9_1	326683
+A_CT_9_3	148773
+A_SA_4_1	58898
+A_SA_4_2	62965
+A_SA_4_3	70529
+A_SA_5_1	41949
+A_SA_5_2	61215
+A_SA_5_6	77493
+A_SA_6_1	39229
+A_SA_6_2	53705
+A_SA_6_3	105152
+D_AL_1_2	50988
+D_AL_1_3	50881
+D_AL_1_4	62977
+D_AL_2_2	28638
+D_AL_2_3	35097
+D_AL_3_1	60269
+D_AL_3_2	52606
+D_AL_3_3	30182
+D_CT_7_1	83887
+D_CT_7_2	65466
+D_CT_8_1	34090
+D_CT_8_2	54430
+D_CT_8_3	95936
+D_CT_9_1	81611
+D_CT_9_2	65402
+D_SA_4_1	236664
+D_SA_4_2	69594
+D_SA_4_4	45151
+D_SA_5_1	59476
+D_SA_5_2	103420
+D_SA_5_3	14619
+D_SA_6_1	100937
+D_SA_6_2	63023
+D_SA_6_3	114139
+
+Total of all groups is 3541013
+
+It took 754 secs to process 4357060 sequences.
+
+Output File Names: 
+/Applications/mothur/ITS-B_S4_L001_R1_001.trim.contigs.fasta
+/Applications/mothur/ITS-B_S4_L001_R1_001.scrap.contigs.fasta
+/Applications/mothur/ITS-B_S4_L001_R1_001.contigs_report
+/Applications/mothur/ITS-B_S4_L001_R1_001.contigs.count_table
+
+summary.seqs(fasta=ITS-B_S4_L001_R1_001.trim.contigs.fasta, processors=24)
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	87	87	0	2	1
+2.5%-tile:	1	278	278	0	4	88526
+25%-tile:	1	298	298	0	4	885254
+Median: 	1	300	300	0	4	1770507
+75%-tile:	1	350	350	0	5	2655760
+97.5%-tile:	1	357	357	2	8	3452488
+Maximum:	1	548	548	101	274	3541013
+Mean:	1	312	312	0	4
+# of Seqs:	3541013
+
+It took 144 secs to summarize 3541013 sequences.
+
+Output File Names:
+/Applications/mothur/ITS-B_S4_L001_R1_001.trim.contigs.summary
+
+# FILE NAMES WERE SHORTENED: 
+
+ITSB.trim.contigs.fasta
+ITSB.trim.contigs.summary
+ITSB.contigs_report
+ITSB.contigs.count_table
+ITSB.scrap.contigs.fasta
+
+# REMOVED BAD SEQUENCES 
+
+screen.seqs(fasta=ITSB.trim.contigs.fasta, count=ITSB.contigs.count_table, maxambig=0, maxhomop=15, minlength=270, processors=24)
+
+It took 57 secs to screen 3541013 sequences, removed 322042.
+
+/******************************************/
+Running command: remove.seqs(accnos=/Applications/mothur/ITSB.trim.contigs.bad.accnos.temp, count=/Applications/mothur/ITSB.contigs.count_table)
+Removed 322042 sequences from /Applications/mothur/ITSB.contigs.count_table.
+
+Output File Names:
+/Applications/mothur/ITSB.contigs.pick.count_table
+
+/******************************************/
+
+Output File Names:
+/Applications/mothur/ITSB.trim.contigs.good.fasta
+/Applications/mothur/ITSB.trim.contigs.bad.accnos
+/Applications/mothur/ITSB.contigs.good.count_table
+
+
+It took 162 secs to screen 3541013 sequences.
+
+summary.seqs(fasta=ITSB.trim.contigs.good.fasta, processors=24)
+
+Using 24 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	270	270	0	3	1
+2.5%-tile:	1	281	281	0	4	80475
+25%-tile:	1	298	298	0	4	804743
+Median: 	1	300	300	0	4	1609486
+75%-tile:	1	350	350	0	5	2414229
+97.5%-tile:	1	356	356	0	8	3138497
+Maximum:	1	548	548	0	15	3218971
+Mean:	1	312	312	0	4
+# of Seqs:	3218971
+
+It took 117 secs to summarize 3218971 sequences.
+
+Output File Names:
+/Applications/mothur/ITSB.trim.contigs.good.summary
+
+# COMBINE UNIQUE SEQUENCES
+
+unique.seqs(fasta=ITSB.trim.contigs.good.fasta, count=ITSB.contigs.good.count_table)
+
+
+Output File Names: 
+/Applications/mothur/ITSB.trim.contigs.good.unique.fasta
+/Applications/mothur/ITSB.trim.contigs.good.count_table
+
+summary.seqs(fasta=ITSB.trim.contigs.good.unique.fasta, processors=24)
+
+Using 24 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	270	270	0	3	1
+2.5%-tile:	1	287	287	0	4	33778
+25%-tile:	1	298	298	0	4	337779
+Median: 	1	300	300	0	4	675557
+75%-tile:	1	301	301	0	4	1013335
+97.5%-tile:	1	355	355	0	7	1317336
+Maximum:	1	548	548	0	15	1351113
+Mean:	1	304	304	0	4
+# of Seqs:	1351113
+
+It took 57 secs to summarize 1351113 sequences.
+
+Output File Names:
+/Applications/mothur/ITSB.trim.contigs.good.unique.summary
+
+# PRE-CLUSTER TO CORRECT FOR SEQUENCING ERRORS
+
+pre.cluster(fasta=ITSB.trim.contigs.good.unique.fasta, count=ITSB.trim.contigs.good.count_table)
+
+Output filenames"
+
+ITSB.trim.contigs.good.unique.precluster.count_table
+ITSB.trim.contigs.good.unique.precluster.fasta
+
+summary.seqs(fasta=ITSB.trim.contigs.good.unique.precluster.fasta, count=ITSB.trim.contigs.good.unique.precluster.count_table)
+
+Using 24 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	270	270	0	3	1
+2.5%-tile:	1	281	281	0	4	80475
+25%-tile:	1	298	298	0	4	804743
+Median: 	1	300	300	0	4	1609486
+75%-tile:	1	350	350	0	5	2414229
+97.5%-tile:	1	356	356	0	8	3138497
+Maximum:	1	548	548	0	15	3218971
+Mean:	1	312	312	0	4
+# of unique seqs:	986693
+total # of seqs:	3218971
+
+It took 47 secs to summarize 3218971 sequences.
+
+Output File Names:
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.summary
+
+# SEARCHING AND REMOVING CHIMERAS
+
+chimera.uchime(fasta=ITSB.trim.contigs.good.unique.precluster.fasta, count=ITSB.trim.contigs.good.unique.precluster.count_table, dereplicate=t, processors=24)
+
+Removing chimeras from your input files:
+/******************************************/
+Running command: remove.seqs(fasta=/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.fasta, accnos=/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.accnos)
+Removed 34962 sequences from /Applications/mothur/ITSB.trim.contigs.good.unique.precluster.fasta.
+
+Output File Names:
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.pick.fasta
+
+/******************************************/
+
+Output File Names: 
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.count_table
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.chimeras
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.accnos
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.fasta
+
+summary.seqs(fasta=ITSB.trim.contigs.good.unique.precluster.denovo.uchime.fasta, count=ITSB.trim.contigs.good.unique.precluster.denovo.uchime.count_table, processors=24)
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	270	270	0	3	1
+2.5%-tile:	1	281	281	0	4	78239
+25%-tile:	1	298	298	0	4	782388
+Median: 	1	300	300	0	4	1564775
+75%-tile:	1	350	350	0	4	2347162
+97.5%-tile:	1	356	356	0	8	3051311
+Maximum:	1	548	548	0	15	3129549
+Mean:	1	312	312	0	4
+# of unique seqs:	951731
+total # of seqs:	3129549
+
+It took 45 secs to summarize 3129549 sequences.
+
+Output File Names:
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.summary
+
+#RDP classifier using UNITE V9 CONTAINING ALL EUKARYOTES as the reference
+
+classify.seqs(fasta=ITSB.trim.contigs.good.unique.precluster.denovo.uchime.fasta, count=ITSB.trim.contigs.good.unique.precluster.denovo.uchime.count_table, reference=UNITEv9_sh_99_s.fasta, taxonomy=UNITEv9_sh_99_s.tax, cutoff=60, processors=24)
+
+It took 41909 secs to classify 951731 sequences.
+
+
+It took 68 secs to create the summary file for 951731 sequences.
+
+
+Output File Names: 
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.UNITEv9_sh_99_s.wang.taxonomy
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.UNITEv9_sh_99_s.wang.tax.summary
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.UNITEv9_sh_99_s.wang.flip.accnos
+
+# REMOVING TAXA OTHER THAN FUNGI
+
+remove.lineage(fasta=ITSB.trim.contigs.good.unique.precluster.denovo.uchime.fasta, count=ITSB.trim.contigs.good.unique.precluster.denovo.uchime.count_table, taxonomy=ITSB.trim.contigs.good.unique.precluster.denovo.uchime.UNITEv9_sh_99_s.wang.taxonomy, taxon=Viridiplantae-Eukaryota_kgd_Incertae_sedis-Alveolata-Metazoa-Rhizaria-unknown)
+
+*** No contaminants to remove ***
+
+Output File Names:
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.UNITEv9_sh_99_s.wang.pick.taxonomy
+
+# MAKING A SUMMARY FILE WITHOUT THE ABOVE TAXON
+
+summary.tax(taxonomy=ITSB.trim.contigs.good.unique.precluster.denovo.uchime.UNITEv9_sh_99_s.wang.taxonomy, count=ITSB.trim.contigs.good.unique.precluster.denovo.uchime.count_table)
+
+It took 47 secs to create the summary file for 3129549 sequences.
+
+
+Output File Names: 
+/Applications/mothur/ITSB.trim.contigs.good.unique.precluster.denovo.uchime.UNITEv9_sh_99_s.wang.tax.summary
+
+# RENAMED FILES
+
+ITSB.trim.contigs.good.unique.precluster.denovo.uchime.UNITEv9_sh_99_s.wang.taxonomy
+TO
+ITSB.filtered.taxonomy
+
+ITSB.trim.contigs.good.unique.precluster.denovo.uchime.UNITEv9_sh_99_s.wang.tax.summary
+TO
+ITSB.filtered.tax.summary
+
+ITSB.trim.contigs.good.unique.precluster.denovo.uchime.count_table
+TO
+ITSB.filtered.count_table
+
+ITSB.trim.contigs.good.unique.precluster.denovo.uchime.fasta
+TO
+ITSB.filtered.fasta
+
+# CLUSTERING OTUs USING VSEARCH (default level is cutoff=0.03, since these are ITS we'll use 5% instead - Fungi)
+
+cluster(fasta=ITSB.filtered.fasta, count=ITSB.filtered.count_table, method=agc, cutoff=0.05)
+
+vsearch v2.16.0_macos_x86_64, 48.0GB RAM, 24 cores
+https://github.com/torognes/vsearch
+
+Reading file ITSB.filtered.fasta.sorted.fasta.temp 100%  
+289249287 nt in 951731 seqs, min 270, max 548, avg 304
+Masking 100% 
+Counting k-mers 100% 
+Clustering 100%  
+Sorting clusters 100%
+Writing clusters 100% 
+Clusters: 14269 Size min 1, max 298070, avg 66.7
+Singletons: 8427, 0.9% of seqs, 59.1% of clusters
+It took 6100 seconds to cluster
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.list
+
+# CLASSIFYING OTUs
+
+classify.otu(list=ITSB.filtered.agc.list, count=ITSB.filtered.count_table, taxonomy=ITSB.filtered.taxonomy)
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.0.05.cons.taxonomy
+/Applications/mothur/ITSB.filtered.agc.0.05.cons.tax.summary
+
+# GENERATING A FILE CONTAINING ONLY ONE REPRESENTATIVE SEQUENCE FROM EACH OTU
+
+get.oturep(fasta=ITSB.filtered.fasta, count=ITSB.filtered.count_table, list=ITSB.filtered.agc.list, method=abundance)
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.0.05.rep.count_table
+/Applications/mothur/ITSB.filtered.agc.0.05.rep.fasta
+
+# GENERATING A SHARED FILE AND COUNTING GROUPS
+
+make.shared(list=ITSB.filtered.agc.list, count=ITSB.filtered.count_table)
+
+Output File Names:
+/Applications/mothur/ITSB.filtered.agc.shared
+
+count.groups(shared=ITSB.filtered.agc.shared)
+
+A_AL_1_2 contains 51281.
+A_AL_1_3 contains 41406.
+A_AL_2_2 contains 86662.
+A_AL_2_3 contains 48025.
+A_AL_2_4 contains 38564.
+A_AL_3_1 contains 58218.
+A_AL_3_2 contains 30148.
+A_AL_3_3 contains 39926.
+A_CT_7_1 contains 31386.
+A_CT_7_2 contains 56076.
+A_CT_8_1 contains 34880.
+A_CT_8_2 contains 89785.
+A_CT_8_3 contains 163538.
+A_CT_9_1 contains 268691.
+A_CT_9_3 contains 130559.
+A_SA_4_1 contains 54812.
+A_SA_4_2 contains 58362.
+A_SA_4_3 contains 61883.
+A_SA_5_1 contains 39041.
+A_SA_5_2 contains 54344.
+A_SA_5_6 contains 72190.
+A_SA_6_1 contains 35836.
+A_SA_6_2 contains 50198.
+A_SA_6_3 contains 99010.
+D_AL_1_2 contains 46052.
+D_AL_1_3 contains 42847.
+D_AL_1_4 contains 57978.
+D_AL_2_2 contains 25327.
+D_AL_2_3 contains 30835.
+D_AL_3_1 contains 53209.
+D_AL_3_2 contains 45591.
+D_AL_3_3 contains 26228.
+D_CT_7_1 contains 77197.
+D_CT_7_2 contains 58695.
+D_CT_8_1 contains 27713.
+D_CT_8_2 contains 50085.
+D_CT_8_3 contains 83518.
+D_CT_9_1 contains 72869.
+D_CT_9_2 contains 59096.
+D_SA_4_1 contains 192526.
+D_SA_4_2 contains 63433.
+D_SA_4_4 contains 40887.
+D_SA_5_1 contains 46725.
+D_SA_5_2 contains 79070.
+D_SA_5_3 contains 10923.
+D_SA_6_1 contains 91497.
+D_SA_6_2 contains 56355.
+D_SA_6_3 contains 96072.
+
+Size of smallest group: 10923.
+
+Total seqs: 3129549.
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.count.summary
+
+# ALPHA AND BETA DIVERSITY
+
+summary.single(shared=ITSB.filtered.agc.shared, calc=nseqs-sobs-coverage-shannon-shannoneven-invsimpson, subsample=10000)
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.groups.ave-std.summary
+
+dist.shared(shared=ITSB.filtered.agc.shared, calc=braycurtis-jest-thetayc, subsample=10000)
+
+It took 47 seconds to run dist.shared.
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.braycurtis.0.05.lt.ave.dist
+/Applications/mothur/ITSB.filtered.agc.braycurtis.0.05.lt.std.dist
+/Applications/mothur/ITSB.filtered.agc.jest.0.05.lt.ave.dist
+/Applications/mothur/ITSB.filtered.agc.jest.0.05.lt.std.dist
+/Applications/mothur/ITSB.filtered.agc.thetayc.0.05.lt.ave.dist
+/Applications/mothur/ITSB.filtered.agc.thetayc.0.05.lt.std.dist
+
+# NMDS ORDINATION PLOT BASED ON BRAY-CURTIS DISTANCE
+
+dist.shared(shared=ITSB.filtered.agc.shared, calc=braycurtis, subsample=10000, output=square)
+
+It took 19 seconds to run dist.shared.
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.braycurtis.0.05.square.ave.dist
+/Applications/mothur/ITSB.filtered.agc.braycurtis.0.05.square.std.dist
+
+nmds(phylip=ITSB.filtered.agc.braycurtis.0.05.square.ave.dist)
+
+Number of dimensions:	2
+Lowest stress :	0.246386
+R-squared for configuration:	0.770987
+
+#HIGH STRESS! will try again with 2-5 dimensions
+
+nmds(phylip=ITSB.filtered.agc.braycurtis.0.05.square.ave.dist, mindim=2, maxdim=5, maxiters=1000)
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.braycurtis.0.05.square.ave.nmds.iters
+/Applications/mothur/ITSB.filtered.agc.braycurtis.0.05.square.ave.nmds.stress
+/Applications/mothur/ITSB.filtered.agc.braycurtis.0.05.square.ave.nmds.axes
+
+# RENAMED FILES TO 
+
+/Applications/mothur/ITSB.5dim.nmds.iters
+/Applications/mothur/ITSB.5dim.nmds.stress
+/Applications/mothur/ITSB.5dim.nmds.axes
+
+#WILL USE 3 DIMENSIONS FOR THE SAKE OF VISUALIZATION
+
+nmds(phylip=ITSB.filtered.agc.braycurtis.0.05.square.ave.dist, mindim=2, maxdim=3, maxiters=1000)
+
+Number of dimensions:	3
+Lowest stress :	0.162249
+R-squared for configuration:	0.863228
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.braycurtis.0.05.square.ave.nmds.iters
+/Applications/mothur/ITSB.filtered.agc.braycurtis.0.05.square.ave.nmds.stress
+/Applications/mothur/ITSB.filtered.agc.braycurtis.0.05.square.ave.nmds.axes
+
+# RENAMED FILES TO 
+
+/Applications/mothur/ITSB.3dim.nmds.iters
+/Applications/mothur/ITSB.3dim.nmds.stress
+/Applications/mothur/ITSB.3dim.nmds.axes
+
+# GENERATING RAREFIED DATA
+
+sub.sample(shared=ITSB.filtered.agc.shared, size=10000, persample=true)
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.0.05.subsample.shared
+
+rarefaction.single(shared=ITSB.filtered.agc.0.05.subsample.shared)
+
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.0.05.subsample.groups.rarefaction
+
+filter.shared(shared=ITSB.filtered.agc.0.05.subsample.shared, mintotal=900)
+
+Removed 5263 OTUs.
+
+Output File Names: 
+/Applications/mothur/ITSB.filtered.agc.0.05.subsample.0.05.filter.shared
+
+
+
+
+
+
+
+

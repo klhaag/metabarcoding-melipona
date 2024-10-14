@@ -1,0 +1,561 @@
+#DEMULTIPLEXING
+
+make.contigs(ffastq=16S-B_S2_L001_R1_001.fastq, rfastq=16S-B_S2_L001_R2_001.fastq, oligos=16SB_supplement.oligos, pdiffs=2, processors=24)
+
+Group count: 
+A_AL_1_2	83527
+A_AL_1_3	115654
+A_AL_2_2	163297
+A_AL_2_3	129041
+A_AL_2_4	63935
+A_AL_3_1	32579
+A_AL_3_2	47414
+A_AL_3_3	33114
+A_CT	31841
+A_CT_7_1	59052
+A_CT_7_2	85816
+A_CT_8_1	137102
+A_CT_8_2	35175
+A_CT_8_3	14529
+A_CT_9_1	71917
+A_CT_9_3	39626
+A_SA_4_1	35273
+A_SA_4_2	37422
+A_SA_4_3	66264
+A_SA_5_1	68128
+A_SA_5_2	68066
+A_SA_5_6	68121
+A_SA_6_1	85875
+A_SA_6_2	44122
+A_SA_6_3	117801
+D_AL_1_2	1117
+D_AL_1_3	358
+D_AL_1_4	18412
+D_AL_2_2	49158
+D_AL_2_3	35371
+D_AL_3_1	31814
+D_AL_3_2	60009
+D_AL_3_3	30506
+D_CT_7_1	74324
+D_CT_7_2	45512
+D_CT_8_1	45872
+D_CT_8_2	102127
+D_CT_8_3	52441
+D_CT_9_1	51565
+D_CT_9_2	131795
+D_SA_4_1	137045
+D_SA_4_2	117573
+D_SA_4_4	54522
+D_SA_5_1	103928
+D_SA_5_2	30797
+D_SA_5_3	11940
+D_SA_6_1	41462
+D_SA_6_2	85788
+D_SA_6_3	38643
+
+Total of all groups is 3086770
+
+It took 754 secs to process 4103357 sequences.
+
+Output File Names: 
+/Applications/mothur/16S-B_S2_L001_R1_001.trim.contigs.fasta
+/Applications/mothur/16S-B_S2_L001_R1_001.scrap.contigs.fasta
+/Applications/mothur/16S-B_S2_L001_R1_001.contigs_report
+/Applications/mothur/16S-B_S2_L001_R1_001.contigs.count_table
+
+summary.seqs(fasta=16S-B_S2_L001_R1_001.trim.contigs.fasta, processors=24)
+
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	47	47	0	3	1
+2.5%-tile:	1	402	402	0	4	77170
+25%-tile:	1	407	407	0	4	771693
+Median: 	1	427	427	0	5	1543386
+75%-tile:	1	427	427	0	5	2315078
+97.5%-tile:	1	427	427	6	6	3009601
+Maximum:	1	549	549	52	275	3086770
+Mean:	1	418	418	0	4
+# of Seqs:	3086770
+
+It took 107 secs to summarize 3086770 sequences.
+
+Output File Names:
+/Applications/mothur/16S-B_S2_L001_R1_001.trim.contigs.summary
+
+# FILE NAMES WERE SHORTENED: 
+
+16SB.contigs_report
+16SB.contigs.count_table
+16SB.scrap.contigs.fasta
+16SB.trim.contigs.fasta
+16SB.trim.contigs.summary
+
+# REMOVED BAD SEQUENCES 
+
+screen.seqs(fasta=16SB.trim.contigs.fasta, count=16SB.contigs.count_table, maxambig=0, maxhomop=15, minlength=400, processors=24)
+
+Output File Names:
+/Applications/mothur/16SB.trim.contigs.good.fasta
+/Applications/mothur/16SB.trim.contigs.bad.accnos
+/Applications/mothur/16SB.contigs.good.count_table
+
+
+It took 137 secs to screen 3086770 sequences.
+
+summary.seqs(fasta=16SB.trim.contigs.good.fasta, processors=24)
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	400	400	0	3	1
+2.5%-tile:	1	402	402	0	4	61093
+25%-tile:	1	407	407	0	4	610924
+Median: 	1	427	427	0	5	1221847
+75%-tile:	1	427	427	0	5	1832770
+97.5%-tile:	1	427	427	0	6	2382601
+Maximum:	1	549	549	0	15	2443693
+Mean:	1	419	419	0	4
+# of Seqs:	2443693
+
+It took 97 secs to summarize 2443693 sequences.
+
+Output File Names:
+/Applications/mothur/16SB.trim.contigs.good.summary
+
+# COMBINE UNIQUE SEQUENCES
+
+unique.seqs(fasta=16SB.trim.contigs.good.fasta, count=16SB.contigs.good.count_table)
+
+Output File Names: 
+/Applications/mothur/16SB.trim.contigs.good.unique.fasta
+/Applications/mothur/16SB.trim.contigs.good.count_table
+
+summary.seqs(fasta=16SB.trim.contigs.good.unique.fasta, processors=24)
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	400	400	0	3	1
+2.5%-tile:	1	402	402	0	4	18824
+25%-tile:	1	407	407	0	4	188234
+Median: 	1	427	427	0	5	376468
+75%-tile:	1	427	427	0	5	564702
+97.5%-tile:	1	428	428	0	6	734112
+Maximum:	1	549	549	0	15	752935
+Mean:	1	420	420	0	4
+# of Seqs:	752935
+
+It took 34 secs to summarize 752935 sequences.
+
+Output File Names:
+/Applications/mothur/16SB.trim.contigs.good.unique.summary
+
+# ALIGNING SEQUENCES TO THE SILVA-BASED REFERENCE ALINGMENT PROVIDED BY MOTHUR
+
+align.seqs(candidate=16SB.trim.contigs.good.unique.fasta, template=silva.bacteria.fasta, processors=24)
+
+[WARNING]: 629 of your sequences generated alignments that eliminated too many bases, a list is provided in /Applications/mothur/16SB.trim.contigs.good.unique.flip.accnos.
+[NOTE]: 110 of your sequences were reversed to produce a better alignment.
+
+It took 767 seconds to align 752935 sequences.
+
+Output File Names: 
+/Applications/mothur/16SB.trim.contigs.good.unique.align
+/Applications/mothur/16SB.trim.contigs.good.unique.align_report
+/Applications/mothur/16SB.trim.contigs.good.unique.flip.accnos
+
+summary.seqs(alignreport=16SB.trim.contigs.good.unique.align_report, processors=24)
+
+Using 24 processors.
+
+		Length	SimBtwnQueryTemplate	LongestInsert	SearchScore	NumSeqs
+Minimum:	400			0		0			4				1
+2.5%-tile:	402			78		0			47				18824
+25%-tile:	407			89		0			59				188234
+Median: 	427			93		0			68				376468
+75%-tile:	427			94		0			75				564702
+97.5%-tile:	428			98		1			89				734112
+Maximum:	549			100		6			100				752935
+Mean:		420			91		0			66
+# of Seqs:	752935
+
+It took 5 secs to summarize 752935 sequences.
+
+summary.seqs(fasta=16SB.trim.contigs.good.unique.align, processors=24)
+
+Using 24 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	0	0	0	0	1	1
+2.5%-tile:	6428	23440	402	0	4	18824
+25%-tile:	6428	23440	407	0	4	188234
+Median: 	6428	23440	427	0	5	376468
+75%-tile:	6428	23440	427	0	5	564702
+97.5%-tile:	7699	23440	428	0	6	734112
+Maximum:	43116	43116	549	0	15	752935
+Mean:	6497	23437	420	0	4
+# of Seqs:	752935
+
+It took 206 secs to summarize 752935 sequences.
+
+Output File Names:
+/Applications/mothur/16SB.trim.contigs.good.unique.summary
+
+# DELETING MISALIGNED SEQUENCES
+
+screen.seqs(fasta=16SB.trim.contigs.good.unique.align, count=16SB.trim.contigs.good.count_table, start=6428, end=23440, maxhomop=15, processors=24)
+
+It took 363 secs to screen 752935 sequences, removed 36409.
+
+/******************************************/
+Running command: remove.seqs(accnos=/Applications/mothur/16SB.trim.contigs.good.unique.bad.accnos.temp, count=/Applications/mothur/16SB.trim.contigs.good.count_table)
+Removed 60281 sequences from /Applications/mothur/16SB.trim.contigs.good.count_table.
+
+Output File Names:
+/Applications/mothur/16SB.trim.contigs.good.pick.count_table
+
+/******************************************/
+
+Output File Names:
+/Applications/mothur/16SB.trim.contigs.good.unique.good.align
+/Applications/mothur/16SB.trim.contigs.good.unique.bad.accnos
+/Applications/mothur/16SB.trim.contigs.good.good.count_table
+
+
+It took 388 secs to screen 752935 sequences.
+
+# FILTERING THE ALIGNMENT FOR GAPS
+
+filter.seqs(fasta=16SB.trim.contigs.good.unique.good.align, vertical=T, trump=., processors=24)
+
+It took 170 secs to filter 716526 sequences.
+
+
+
+Length of filtered alignment: 1118
+Number of columns removed: 48882
+Length of the original alignment: 50000
+Number of sequences used to construct filter: 716526
+
+Output File Names: 
+/Applications/mothur/16SB.filter
+/Applications/mothur/16SB.trim.contigs.good.unique.good.filter.fasta
+
+summary.seqs(fasta=16SB.trim.contigs.good.unique.good.filter.fasta, count=16SB.trim.contigs.good.good.count_table, processors=24)
+
+Using 24 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	1117	367	0	3	1
+2.5%-tile:	1	1118	402	0	4	59586
+25%-tile:	1	1118	407	0	4	595854
+Median: 	1	1118	427	0	5	1191707
+75%-tile:	1	1118	427	0	5	1787560
+97.5%-tile:	1	1118	427	0	6	2323827
+Maximum:	3	1118	469	0	15	2383412
+Mean:	1	1117	419	0	4
+# of unique seqs:	716526
+total # of seqs:	2383412
+
+It took 41 secs to summarize 2383412 sequences.
+
+Output File Names:
+/Applications/mothur/16SB.trim.contigs.good.unique.good.filter.summary
+
+unique.seqs(fasta=16SB.trim.contigs.good.unique.good.filter.fasta, count=16SB.trim.contigs.good.good.count_table)
+
+Output File Names: 
+/Applications/mothur/16SB.trim.contigs.good.unique.good.filter.unique.fasta
+/Applications/mothur/16SB.trim.contigs.good.unique.good.filter.count_table
+
+summary.seqs(fasta=16SB.trim.contigs.good.unique.good.filter.unique.fasta, count=16SB.trim.contigs.good.unique.good.filter.count_table, processors=24)
+
+Using 24 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	1117	367	0	3	1
+2.5%-tile:	1	1118	402	0	4	59586
+25%-tile:	1	1118	407	0	4	595854
+Median: 	1	1118	427	0	5	1191707
+75%-tile:	1	1118	427	0	5	1787560
+97.5%-tile:	1	1118	427	0	6	2323827
+Maximum:	3	1118	469	0	15	2383412
+Mean:	1	1117	419	0	4
+# of unique seqs:	716171
+total # of seqs:	2383412
+
+It took 38 secs to summarize 2383412 sequences.
+
+Output File Names:
+/Applications/mothur/16SB.trim.contigs.good.unique.good.filter.unique.summary
+
+# PRE-CLUSTER SEQUENCES TO REMOVE SEQUENCING ERRORS
+
+pre.cluster(fasta=16SB.trim.contigs.good.unique.good.filter.fasta, count=16SB.trim.contigs.good.unique.good.filter.count_table)
+
+Using 24 processors.
+
+Output File Names: 
+/Applications/mothur/16SB.trim.contigs.good.unique.good.filter.precluster.fasta
+/Applications/mothur/16SB.trim.contigs.good.unique.good.filter.precluster.count_table
+
+# SEARCHING AND REMOVING CHIMERAS
+
+chimera.uchime(fasta=16SB.trim.contigs.good.unique.good.filter.precluster.fasta, count=16SB.trim.contigs.good.unique.good.filter.precluster.count_table, dereplicate=t, processors=24)
+
+Output file names:
+
+16SB.trim.contigs.good.unique.good.filter.precluster.denovo.uchime.accnos
+16SB.trim.contigs.good.unique.good.filter.precluster.denovo.uchime.chimeras
+16SB.trim.contigs.good.unique.good.filter.precluster.denovo.uchime.count_table
+16SB.trim.contigs.good.unique.good.filter.precluster.denovo.uchime.fasta
+
+summary.seqs(fasta=16SB.trim.contigs.good.unique.good.filter.precluster.denovo.uchime.fasta, count=16SB.trim.contigs.good.unique.good.filter.precluster.denovo.uchime.count_table, processors=24)
+
+Using 24 processors.
+
+		Start	End	NBases	Ambigs	Polymer	NumSeqs
+Minimum:	1	1118	367	0	3	1
+2.5%-tile:	1	1118	402	0	4	46119
+25%-tile:	1	1118	407	0	4	461189
+Median: 	1	1118	427	0	5	922378
+75%-tile:	1	1118	427	0	5	1383566
+97.5%-tile:	1	1118	427	0	6	1798636
+Maximum:	3	1118	469	0	15	1844754
+Mean:	1	1118	418	0	4
+# of unique seqs:	454368
+total # of seqs:	1844754
+
+It took 22 secs to summarize 1844754 sequences.
+
+Output File Names:
+/Applications/mothur/16SB.trim.contigs.good.unique.good.filter.precluster.denovo.uchime.summary
+
+# RENAMED FILES:
+
+16SB.trim.contigs.good.unique.good.filter.precluster.denovo.uchime.count_table
+
+> 16SB.filtered.count_table
+
+16SB.trim.contigs.good.unique.good.filter.precluster.denovo.uchime.fasta
+
+> 16SB.filtered.fasta
+
+# CLASSIFYING SEQUENCES USING SILVA REFERENCE DATABASE (Release 138.1)
+
+classify.seqs(fasta=16SB.filtered.fasta, count=16SB.filtered.count_table, reference=silva.bacteria.fasta, taxonomy=silva.bacteria.rdp.tax, cutoff=80, processors=24)
+
+t took 930 secs to classify 454368 sequences.
+
+
+It took 42 secs to create the summary file for 454368 sequences.
+
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.rdp.wang.taxonomy
+/Applications/mothur/16SB.filtered.rdp.wang.tax.summary
+/Applications/mothur/16SB.filtered.rdp.wang.flip.accnos
+
+# REMOVING NON-BACTERIAL TAXA
+
+remove.lineage(fasta=16SB.filtered.fasta, count=16SB.filtered.count_table, taxonomy=16SB.filtered.rdp.wang.taxonomy, taxon=Chloroplast-Mitochondria-unknown-Archaea-Eukaryota)
+
+/******************************************/
+Running command: remove.seqs(accnos=/Applications/mothur/16SB.filtered.rdp.wang.accnos, count=/Applications/mothur/16SB.filtered.count_table, fasta=/Applications/mothur/16SB.filtered.fasta)
+Removed 3005 sequences from /Applications/mothur/16SB.filtered.fasta.
+Removed 12076 sequences from /Applications/mothur/16SB.filtered.count_table.
+
+Output File Names:
+/Applications/mothur/16SB.filtered.pick.fasta
+/Applications/mothur/16SB.filtered.pick.count_table
+
+/******************************************/
+
+Output File Names:
+/Applications/mothur/16SB.filtered.rdp.wang.pick.taxonomy
+/Applications/mothur/16SB.filtered.rdp.wang.accnos
+/Applications/mothur/16SB.filtered.pick.count_table
+/Applications/mothur/16SB.filtered.pick.fasta
+
+# MAKING A SUMMARY FILE WITHOUT THE ABOVE TAXON
+
+summary.tax(taxonomy=16SB.filtered.rdp.wang.pick.taxonomy, count=16SB.filtered.pick.count_table)
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.rdp.wang.pick.tax.summary
+
+# CLUSTERING SEQS IN OTUs USING VSEARCH
+
+cluster(fasta=16SB.filtered.pick.fasta, count=16SB.filtered.pick.count_table, method=agc, cutoff=0.03)
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.list
+
+# CLASSIFYING OTUs
+
+classify.otu(list=16SB.filtered.pick.agc.list, count=16SB.filtered.pick.count_table, taxonomy=16SB.filtered.rdp.wang.pick.taxonomy)
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.cons.taxonomy
+/Applications/mothur/16SB.filtered.pick.agc.0.03.cons.tax.summary
+
+# GENERATING A FILE CONTAINING ONLY ONE REPRESENTATIVE SEQUENCE FROM EACH OTU
+
+get.oturep(fasta=16SB.filtered.pick.fasta, count=16SB.filtered.pick.count_table, list=16SB.filtered.pick.agc.list, method=abundance)
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.rep.count_table
+/Applications/mothur/16SB.filtered.pick.agc.0.03.rep.fasta
+
+# GENERATING A SHARED FILE AND COUNTING GROUPS
+
+make.shared(list=16SB.filtered.pick.agc.list, count=16SB.filtered.pick.count_table)
+
+Output File Names:
+/Applications/mothur/16SB.filtered.pick.agc.shared
+
+count.groups(shared=16SB.filtered.pick.agc.shared)
+
+A_AL_1_2 contains 45915.
+A_AL_1_3 contains 59753.
+A_AL_2_2 contains 86979.
+A_AL_2_3 contains 72760.
+A_AL_2_4 contains 37015.
+A_AL_3_1 contains 17576.
+A_AL_3_2 contains 26189.
+A_AL_3_3 contains 19316.
+A_CT contains 20370.
+A_CT_7_1 contains 35827.
+A_CT_7_2 contains 48401.
+A_CT_8_1 contains 87823.
+A_CT_8_2 contains 20449.
+A_CT_8_3 contains 10084.
+A_CT_9_1 contains 41227.
+A_CT_9_3 contains 26107.
+A_SA_4_1 contains 21661.
+A_SA_4_2 contains 20844.
+A_SA_4_3 contains 39774.
+A_SA_5_1 contains 38812.
+A_SA_5_2 contains 39193.
+A_SA_5_6 contains 43453.
+A_SA_6_1 contains 53856.
+A_SA_6_2 contains 26578.
+A_SA_6_3 contains 67630.
+D_AL_1_2 contains 545.  xxxxxx
+D_AL_1_3 contains 205.  xxxxxx
+D_AL_1_4 contains 14017.
+D_AL_2_2 contains 28093.
+D_AL_2_3 contains 20874.
+D_AL_3_1 contains 20596.
+D_AL_3_2 contains 35852.
+D_AL_3_3 contains 18240.
+D_CT_7_1 contains 44934.
+D_CT_7_2 contains 28641.
+D_CT_8_1 contains 28867.
+D_CT_8_2 contains 62246.
+D_CT_8_3 contains 32915.
+D_CT_9_1 contains 31952.
+D_CT_9_2 contains 76625.
+D_SA_4_1 contains 86581.
+D_SA_4_2 contains 74645.
+D_SA_4_4 contains 31033.
+D_SA_5_1 contains 60846.
+D_SA_5_2 contains 20103.
+D_SA_5_3 contains 8631.
+D_SA_6_1 contains 24257.
+D_SA_6_2 contains 50429.
+D_SA_6_3 contains 23959.
+Size of smallest group: 205.
+
+Total seqs: 1832678.
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.count.summary
+
+# CREATING A NEW SHARED FILE WITHOUT THE NEGATIVE CONTROL
+
+remove.groups(shared=16SB.filtered.pick.agc.shared, groups=A_CT)
+
+
+Output File names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.shared
+
+# ALPHA AND BETA DIVERSITY
+
+summary.single(shared=16SB.filtered.pick.agc.0.03.pick.shared, calc=nseqs-sobs-coverage-shannon-shannoneven-invsimpson, subsample=5000)
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.groups.ave-std.summary
+
+dist.shared(shared=16SB.filtered.pick.agc.0.03.pick.shared, calc=braycurtis-jest-thetayc, subsample=5000)
+
+It took 36 seconds to run dist.shared.
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.braycurtis.0.03.lt.ave.dist
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.braycurtis.0.03.lt.std.dist
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.jest.0.03.lt.ave.dist
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.jest.0.03.lt.std.dist
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.thetayc.0.03.lt.ave.dist
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.thetayc.0.03.lt.std.dist
+
+# GENERATING RAREFIED DATA
+
+sub.sample(shared=16SB.filtered.pick.agc.0.03.pick.shared, size=5000, persample=true)
+
+D_AL_1_2 contains 545. Eliminating.
+D_AL_1_3 contains 205. Eliminating.
+Sampling 5000 from each group.
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.0.03.subsample.shared
+
+rarefaction.single(shared=16SB.filtered.pick.agc.0.03.pick.0.03.subsample.shared)
+
+It took 30 secs to run rarefaction.single.
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.0.03.subsample.groups.rarefaction
+
+filter.shared(shared=16SB.filtered.pick.agc.0.03.pick.0.03.subsample.shared, mintotal=400)
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.0.03.subsample.0.03.filter.shared
+
+# NMDS ORDINATION PLOT BASED ON BRAY-CURTIS DISTANCE
+
+dist.shared(shared=16SB.filtered.pick.agc.0.03.pick.0.03.subsample.shared, calc=braycurtis, output=square)
+
+It took 0 seconds to run dist.shared.
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.0.03.subsample.braycurtis.0.03.square.dist
+
+nmds(phylip=16SB.filtered.pick.agc.0.03.pick.0.03.subsample.braycurtis.0.03.square.dist)
+
+Number of dimensions:	2
+Lowest stress :	0.257802
+R-squared for configuration:	0.739654
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.0.03.subsample.braycurtis.0.03.square.nmds.iters
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.0.03.subsample.braycurtis.0.03.square.nmds.stress
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.0.03.subsample.braycurtis.0.03.square.nmds.axes
+
+# RUNNING NMDS ORDINATION PLOT BASED ON BRAY-CURTIS DISTANCE WITH MORE DIMENSIONS
+
+nmds(phylip=16SB.filtered.pick.agc.0.03.pick.0.03.subsample.braycurtis.0.03.square.dist, maxdim=4)
+
+Number of dimensions:	4
+Lowest stress :	0.114643
+R-squared for configuration:	0.904906
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.0.03.subsample.braycurtis.0.03.square.nmds.iters
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.0.03.subsample.braycurtis.0.03.square.nmds.stress
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.0.03.subsample.braycurtis.0.03.square.nmds.axes
+
+# ALPHA DIVERSITY INCLUDING CHAO
+
+summary.single(shared=16SB.filtered.pick.agc.0.03.pick.shared, calc=nseqs-sobs-coverage-shannon-shannoneven-chao-invsimpson, subsample=5000)
+
+Output File Names: 
+/Applications/mothur/16SB.filtered.pick.agc.0.03.pick.groups.ave-std.summary
+
+Renamed to 16SB.alfadiversity.ave-std.summary
